@@ -1,6 +1,7 @@
 package com.example.recyclerviewexample;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,7 +48,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         String text = locallDataSet.get(position);
         holder.textView.setText(text);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -56,7 +57,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 //                Intent intent = new Intent(holder.itemView.getContext(), SecoundActivity.class);
 //                holder.itemView.getContext().startActivity(intent);
                 Intent intent = new Intent(v.getContext(), SecoundActivity.class);
+                intent.putExtra("item_number",position);
                 v.getContext().startActivity(intent);
+
+
             }
         });
 
