@@ -11,12 +11,12 @@ import retrofit2.http.POST;
 
 public interface SeverApi {
 
-    @POST("users/login")
+    @POST("/login")
     Call<LogInResponse> Login (
             @Body LogInRequest logInRequest
     );
 
-    @POST("users/sigup")
+    @POST("/signup")
     Call<SignupResponse> Signup (
             @Body SignupRequest signupRequest
     );
