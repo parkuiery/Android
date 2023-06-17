@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    // 카멜케이스로 다시 짓기
     private void LogIn() {
         String userId = binding.loginIdEt.getText().toString();
         String userPw = binding.loginPwEt.getText().toString();
@@ -47,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    // 여기도 카멜케이스로
     private void LogInResponse() {
         String userId = binding.loginIdEt.getText().toString();
         String userPw = binding.loginPwEt.getText().toString();
@@ -57,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         severApi.Login(logInRequest).enqueue(new Callback<LogInResponse>() {
             @Override
             public void onResponse(Call<LogInResponse> call, Response<LogInResponse> response) {
+                Log.d("TEST", response.toString());
                 if(response.isSuccessful()){
                     Toast.makeText(LoginActivity.this, "로그인에 성공 했습니다!",Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
@@ -66,6 +70,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<LogInResponse> call, Throwable t) {
+                Log.d("TEST", t.toString());
                 Toast.makeText(LoginActivity.this, "로그인에 실패 했습니다" ,Toast.LENGTH_SHORT).show();
             }
         });
