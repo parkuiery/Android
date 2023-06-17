@@ -1,14 +1,14 @@
 package com.example.practiceapp.login;
 
 public class LogInResponse {
-    private String userId;
-    private String userPw;
+    private String accessToken;
+    private String expiredAt;
 
-    public String getUserId(){
-        return userId;
+    public String getAccessToken() {
+        return accessToken;
     }
 
-    public String getUserPw(){
-        return userPw;
+    public String getExpiredAt() {
+        return expiredAt;
     }
 }

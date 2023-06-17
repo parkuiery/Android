@@ -2,27 +2,27 @@ package com.example.practiceapp.login;
 
 public class LogInRequest {
 
-    private String userId;
-    private String userPw;
+    private String username;
+    private String password;
 
-    public LogInRequest(String userId, String userPw){
-        this.userId = userId;
-        this.userPw = userPw;
+    public LogInRequest(String username, String password){
+        this.username = username;
+        this.password = password;
     }
 
-    public String getUserId(){
-        return userId;
+    public String getUsername(){
+        return username;
     }
 
-    public void setUserId(String userId){
-        this.userId = userId;
+    public void setUsername(String username){
+        this.username = username;
     }
 
-    public String getUserPw() {
-        return userPw;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUserPw(String userPw){
-        this.userPw = userPw;
+    public void setPassword(String password){
+        this.password = password;
     }
 }
