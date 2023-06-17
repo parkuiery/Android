@@ -30,13 +30,12 @@ public class LoginActivity extends AppCompatActivity {
         binding.loginLgoinBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LogIn();
+                logIn();
             }
         });
     }
 
-    // 카멜케이스로 다시 짓기
-    private void LogIn() {
+    private void logIn() {
         String userId = binding.loginIdEt.getText().toString();
         String userPw = binding.loginPwEt.getText().toString();
 
@@ -45,12 +44,11 @@ public class LoginActivity extends AppCompatActivity {
         } else if (userPw.length() == 0) {
             Toast.makeText(LoginActivity.this , "비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show();
         }else {
-            LogInResponse();
+            logInResponse();
         }
     }
 
-    // 여기도 카멜케이스로
-    private void LogInResponse() {
+    private void logInResponse() {
         String userId = binding.loginIdEt.getText().toString();
         String userPw = binding.loginPwEt.getText().toString();
 
