@@ -36,12 +36,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void logIn() {
-        String userId = binding.loginIdEt.getText().toString();
-        String userPw = binding.loginPwEt.getText().toString();
+        String username = binding.loginIdEt.getText().toString();
+        String email = binding.loginPwEt.getText().toString();
 
-        if(userId.length() == 0) {
+        if(username.length() == 0) {
             Toast.makeText(LoginActivity.this, "아이디를 입력해주세요",Toast.LENGTH_SHORT).show();
-        } else if (userPw.length() == 0) {
+        } else if (email.length() == 0) {
             Toast.makeText(LoginActivity.this , "비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show();
         }else {
             logInResponse();
@@ -49,10 +49,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void logInResponse() {
-        String userId = binding.loginIdEt.getText().toString();
-        String userPw = binding.loginPwEt.getText().toString();
+        String username = binding.loginIdEt.getText().toString();
+        String email = binding.loginPwEt.getText().toString();
 
-        LogInRequest logInRequest = new LogInRequest(userId, userPw);
+        LogInRequest logInRequest = new LogInRequest(username, email);
         SeverApi severApi = ApiProvider.getInstnace().create(SeverApi.class);
 
         severApi.Login(logInRequest).enqueue(new Callback<LogInResponse>() {
