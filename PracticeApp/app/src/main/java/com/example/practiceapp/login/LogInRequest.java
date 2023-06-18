@@ -10,11 +10,11 @@ public class LogInRequest {
         this.password = password;
     }
 
-    public String getUsername(){
+    public String get(){
         return username;
     }
 
-    public void setUsername(String username){
+    public void set(String username){
         this.username = username;
     }
 
