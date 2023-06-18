@@ -1,20 +1,20 @@
 package com.example.practiceapp.signUp;
 
 public class SignupResponse {
-    private String userId;
-    private String userPw;
-    private String userPwCheck;
+    private String username;
+    private String email;
+    private String password;
 
 
-    public String getUserId() {
-        return userId;
+    public String getusername() {
+        return username;
     }
 
-    public String getUserPw() {
-        return userPw;
+    public String getemail() {
+        return email;
     }
 
-    public String getUserPwCheck() {
-        return userPwCheck;
+    public String getpassword() {
+        return password;
     }
 }

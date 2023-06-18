@@ -34,21 +34,21 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     private void Signup() {
-        String userId = binding.signupIdEt.getText().toString();
-        String userPw = binding.signupPwEt.getText().toString();
-        String userPwCheck = binding.signupPwCheckEt.getText().toString();
+        String username = binding.signupIdEt.getText().toString();
+        String email = binding.signupEmail.getText().toString();
+        String password = binding.signupPwEt.getText().toString();
 
-        if(userId.length()==0|| userPw.length()==0||userPwCheck.length()==0){
+        if(username.length()==0|| email.length()==0||password.length()==0){
             Toast.makeText(SignupActivity.this, "모든 항목을 입력해주세요",Toast.LENGTH_SHORT).show();
         }else {
-            SignupResponse(userId,userPw, userPwCheck);
+            SignupResponse(username,email, password);
         }
     }
 
-    public void SignupResponse(String userId, String userPw, String userPwCherck) {
+    public void SignupResponse(String username, String email, String emailCherck) {
         SeverApi severApi = ApiProvider.getInstnace().create(SeverApi.class);
 
-        SignupRequest signupRequest = new SignupRequest(userId, userPw, userPwCherck);
+        SignupRequest signupRequest = new SignupRequest(username, email, emailCherck);
 
         severApi.Signup(signupRequest).enqueue(new Callback<SignupResponse>() {
             @Override

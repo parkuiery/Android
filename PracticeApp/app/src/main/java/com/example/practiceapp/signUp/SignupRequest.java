@@ -1,38 +1,38 @@
 package com.example.practiceapp.signUp;
 
 public class SignupRequest {
-    private String userId;
-    private String userPw;
-    private String userPwcheck;
+    private String username;
+    private String email;
+    private String password;
 
-    public SignupRequest(String userId, String userPw, String userPwcheck){
-        this.userId = userId;
-        this.userPw = userPw;
-        this.userPwcheck = userPwcheck;
+    public SignupRequest(String username, String email, String password){
+        this.username = username;
+        this.email = email;
+        this.password = password;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getusername() {
+        return username;
     }
 
-    public void setUserId(String userId){
-        this.userId = userId;
+    public void setusername(String username){
+        this.username = username;
     }
 
-    public String getUserPw() {
-        return userPw;
+    public String getemail() {
+        return email;
     }
 
-    public void setUserPw(String userPw) {
-        this.userPw = userPw;
+    public void setemail(String email) {
+        this.email = email;
     }
 
-    public String getUserPwcheck() {
-        return userPwcheck;
+    public String getpassword() {
+        return password;
     }
 
-    public void setUserPwcheck(String userPwcheck){
-        this.userPwcheck = userPwcheck;
+    public void setpassword(String password){
+        this.password = password;
     }
 
 }
