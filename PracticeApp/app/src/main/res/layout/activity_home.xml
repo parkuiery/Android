@@ -7,6 +7,7 @@
     tools:context=".home.HomeActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavi"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -16,6 +17,11 @@
         app:labelVisibilityMode="labeled"
         app:itemPaddingTop="2dp"
         android:paddingBottom="1dp">
+
+        <FrameLayout
+            android:id="@+id/main_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
