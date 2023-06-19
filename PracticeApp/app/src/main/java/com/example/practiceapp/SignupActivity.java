@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.practiceapp.databinding.ActivitySignupBinding;
-import com.example.practiceapp.home.HomeActivity;
 import com.example.practiceapp.signUp.SignupRequest;
 import com.example.practiceapp.signUp.SignupResponse;
 
