@@ -1,8 +1,10 @@
-package com.example.practiceapp;
+package com.example.practiceapp.home;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.practiceapp.R;
 
 public class HomeActivity extends AppCompatActivity {
 
