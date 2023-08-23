@@ -1,4 +1,4 @@
-package com.example.todolist.confing
+package com.example.todolist.config
 
 import android.app.Application
 import com.example.todolist.repository.TodoRepository
