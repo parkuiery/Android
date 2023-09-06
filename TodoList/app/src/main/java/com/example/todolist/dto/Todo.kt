@@ -12,5 +12,4 @@ class Todo (
     @ColumnInfo(name = "content") val content: String,
     @ColumnInfo(name = "timestamp") val timestamp: String,
     @ColumnInfo(name = "isChecked") var isChecked: Boolean
-): Serializable {
-}
+): Serializable
