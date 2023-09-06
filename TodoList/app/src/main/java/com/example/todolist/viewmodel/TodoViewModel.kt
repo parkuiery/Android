@@ -19,6 +19,10 @@ class TodoViewModel: ViewModel() {
     fun getOne(id: Long) = todoRepository.getTodo(id)
 
     fun insert(dto: Todo) = viewModelScope.launch(Dispatchers.IO) {
+        todoRepository.insert(dto)
+    }
+
+    fun update(dto: Todo) = viewModelScope.launch(Dispatchers.IO){
         todoRepository.update(dto)
     }
 
