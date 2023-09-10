@@ -35,7 +35,21 @@ class TodoAdapter(val context: Context):RecyclerView.Adapter<TodoAdapter.TodoVie
             checkbox.setOnClickListener {
                 itemCheckBoxClickListener.onClick(it,layoutPosition, list[layoutPosition].id)
             }
+
+            itemView.setOnClickListener {
+                itemClickListener.onClick(it, layoutPosition, list[layoutPosition].id)
+            }
         }
+    }
+
+    interface ItemClickListener {
+        fun onClick(view : View, position: Int, itemId: Long)
+    }
+
+    private lateinit var itemClickListener: ItemClickListener
+
+    fun setItemClickListener(itemClickListener: ItemClickListener) {
+        this.itemClickListener = itemClickListener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
