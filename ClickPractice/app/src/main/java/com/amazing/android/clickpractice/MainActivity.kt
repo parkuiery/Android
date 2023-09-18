@@ -23,15 +23,24 @@ class MainActivity : AppCompatActivity() {
 
         //binding.lifecycleOwner = this
 
-        val button = findViewById<Button>(R.id.clickBtn)
-
-
-        button.setOnClickListener {
+        binding.clickBtn.setOnClickListener {
             viewModel.incrementCounter()
         }
 
+        binding.start.setOnClickListener {
+            viewModel.checkTime()
+        }
+
+        binding.set.setOnClickListener {
+            viewModel.set()
+        }
+
         viewModel.counter.observe(this) { count ->
-            button.text = count.toString()
+            binding.clickCount.text = count.toString()
+        }
+
+        viewModel.time.observe(this) { time ->
+            binding.time.text = time.toString()
         }
 
     }
