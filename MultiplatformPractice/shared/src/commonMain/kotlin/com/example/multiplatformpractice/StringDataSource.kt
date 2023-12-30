@@ -1,4 +1,7 @@
 package com.example.multiplatformpractice
 
-class StringDataSource {
+expect class StringDataSource() {
+
+    fun getSavedString():String
+    fun saveString(string: String)
 }
