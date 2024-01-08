@@ -1,4 +1,6 @@
 package com.example.composeprac
 
-class LoginState {
-}
+data class LoginState (
+    val email: String = "",
+    val password: String = "",
+)
