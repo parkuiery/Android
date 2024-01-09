@@ -63,16 +63,13 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-data class LoginState(
-    val email: String = "",
-    val password: String = "",
-)
-
 @Composable
 internal fun LoginScreen(
     viewModel: MainViewModel
 ) {
-    var uiState by remember { mutableStateOf(LoginState()) }
+    //var uiState by remember { mutableStateOf(viewModel.loginState) }
+    val uiState by viewModel.loginState.observeAsState()
+
     Surface(
         modifier = Modifier.fillMaxSize(),
     ) {
@@ -80,11 +77,13 @@ internal fun LoginScreen(
             BackKey()
             LoginTitle()
             Email(
-                email = viewModel.email,
-                //email = { uiState.email },
+                //email = viewModel.email,
+                email = { uiState?.email ?: "" },
                 onEmailChanged = {
+                    //viewModel.updateEmail(email = it)
+                    //uiState = uiState.value.copy(email = it)
+                    //uiState = viewModel.updateEmail(email = it)
                     viewModel.updateEmail(email = it)
-                    //uiState = uiState.copy(email = it)
                 }
             )
             Password()
@@ -147,11 +146,13 @@ private fun LoginTitle() {
 
 @Composable
 fun Email(
-    email :LiveData<String>,
-    //email: () -> String,
+    //email :LiveData<String>,
+    email: () -> String,
+    //email:String,
     onEmailChanged: (String) -> Unit,
 ) {
-    val data by email.observeAsState("")
+    //val data by email
+    Log.d("TEST","text"+email())
     Column(
         modifier = Modifier.padding(
             horizontal = 24.dp,
@@ -168,7 +169,7 @@ fun Email(
                 .background(Color.LightGray)
         ) {
             BasicTextField(
-                value = data,
+                value = email(),
                 onValueChange = onEmailChanged,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -184,7 +185,7 @@ fun Email(
                     .align(Alignment.CenterEnd)
                     .padding(horizontal = 16.dp, vertical = 12.dp)
             )
-            if (data.isBlank()) {
+            if (email().isBlank()) {
                 Text(
                     text = "example",
                     modifier = Modifier
