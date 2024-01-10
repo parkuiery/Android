@@ -81,7 +81,12 @@ internal fun LoginScreen(
                     viewModel.updateEmail(email = it)
                 }
             )
-            Password()
+            Password(
+                password = { uiState?.password ?: ""},
+                onPasswordChanged = {
+                    viewModel.updatePassword(password = it)
+                }
+            )
             Spacer(modifier = Modifier.weight(1f))
             LoginBtn()
         }
@@ -189,9 +194,11 @@ fun Email(
 }
 
 @Composable
-private fun Password() {
-    val textState = remember { mutableStateOf(TextFieldValue()) }
-    var visible by remember { mutableStateOf(false) }
+private fun Password(
+    password: () -> String,
+    onPasswordChanged: (String) -> Unit,
+) {
+    var visible by remember { mutableStateOf(true) }
     Column(modifier = Modifier.padding(horizontal = 24.dp, vertical = 12.dp)) {
         Text(
             text = "비밀번호"
@@ -205,8 +212,8 @@ private fun Password() {
                 .background(Color.LightGray)
         ) {
             BasicTextField(
-                value = textState.value,
-                onValueChange = { textState.value = it },
+                value = password(),
+                onValueChange =  onPasswordChanged,
                 modifier = Modifier
                     .fillMaxWidth()
                     .align(Alignment.CenterStart)
@@ -214,7 +221,7 @@ private fun Password() {
                 visualTransformation = if (visible) PasswordVisualTransformation() else VisualTransformation.None
 
             )
-            if (textState.value.text.isEmpty()) {
+            if (password().isEmpty()) {
                 Text(
                     text = "비밀번호를 입력해주세요",
                     modifier = Modifier
