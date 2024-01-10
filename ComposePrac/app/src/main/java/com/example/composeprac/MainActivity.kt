@@ -67,7 +67,6 @@ class MainActivity : ComponentActivity() {
 internal fun LoginScreen(
     viewModel: MainViewModel
 ) {
-    //var uiState by remember { mutableStateOf(viewModel.loginState) }
     val uiState by viewModel.loginState.observeAsState()
 
     Surface(
@@ -77,12 +76,8 @@ internal fun LoginScreen(
             BackKey()
             LoginTitle()
             Email(
-                //email = viewModel.email,
                 email = { uiState?.email ?: "" },
                 onEmailChanged = {
-                    //viewModel.updateEmail(email = it)
-                    //uiState = uiState.value.copy(email = it)
-                    //uiState = viewModel.updateEmail(email = it)
                     viewModel.updateEmail(email = it)
                 }
             )
@@ -146,13 +141,9 @@ private fun LoginTitle() {
 
 @Composable
 fun Email(
-    //email :LiveData<String>,
     email: () -> String,
-    //email:String,
     onEmailChanged: (String) -> Unit,
 ) {
-    //val data by email
-    Log.d("TEST","text"+email())
     Column(
         modifier = Modifier.padding(
             horizontal = 24.dp,
