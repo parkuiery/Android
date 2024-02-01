@@ -53,7 +53,7 @@ fun MusicScreen() {
                          IconButton(onClick = { /*TODO*/ }) {
                              Icon(
                                  //painter = painterResource(id = R.drawable.baseline_keyboard_arrow_down_24),
-                                 imageVector = Icons.Outlined.KeyboardArrowDown,
+                                 imageVector = Icons.Outlined.ArrowBack,
                                  contentDescription = null
                              )
                          }
