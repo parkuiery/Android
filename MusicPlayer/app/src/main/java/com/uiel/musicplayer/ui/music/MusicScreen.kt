@@ -41,7 +41,9 @@ import com.uiel.musicplayer.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MusicScreen() {
+fun MusicScreen(
+    onHideCurrentPlayingModal: () -> Unit,
+) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
@@ -50,10 +52,12 @@ fun MusicScreen() {
             )*/
                  TopAppBar(
                      navigationIcon = {
-                         IconButton(onClick = { /*TODO*/ }) {
+                         IconButton(
+                             onClick = onHideCurrentPlayingModal,
+                         ) {
                              Icon(
                                  //painter = painterResource(id = R.drawable.baseline_keyboard_arrow_down_24),
-                                 imageVector = Icons.Outlined.ArrowBack,
+                                 imageVector = Icons.Outlined.KeyboardArrowDown,
                                  contentDescription = null
                              )
                          }
