@@ -11,17 +11,16 @@ import androidx.compose.material3.SheetValue
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.material3.rememberStandardBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.snapshotFlow
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.uiel.musicplayer.ui.home.HomeScreen
-import com.uiel.musicplayer.ui.music.MusicScreen
+import com.uiel.musicplayer.ui.music.MusicSheetContent
 import com.uiel.musicplayer.ui.playlist.PlayListScreen
 import com.uiel.musicplayer.ui.theme.MusicPlayerTheme
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
@@ -49,7 +48,7 @@ fun MusicApp() {
     BottomSheetScaffold(
         scaffoldState = scaffoldState,
         sheetContent = {
-            MusicScreen(
+            MusicSheetContent(
                 onHideCurrentPlayingModal = {
                     scope.launch {
                         scaffoldState.bottomSheetState.hide()
@@ -65,8 +64,8 @@ fun MusicApp() {
         ) {
             composable("home") {
                 HomeScreen(
-                    openPlayList = {
-                        navController.navigate("play_list")
+                    openPlayList = { playListId, playListTitle ->  
+                        navController.navigate("play_list/$playListId?title=$playListTitle")
                     },
                     onShowCurrentPlayingModal = {
                         scope.launch {
@@ -75,12 +74,28 @@ fun MusicApp() {
                     },
                 )
             }
-            composable("play_list") {
-                PlayListScreen(
-                    navigateUp = {
-                        //navController.popBackStack()
-                        navController::navigateUp
+            composable(
+                route = "play_list/{play_list_id}?title={play_list_title}",
+                arguments = listOf(
+                    navArgument(name = "play_list_id") {
+                        type = NavType.LongType
                     },
+                    navArgument(name = "play_list_title") {
+                        type = NavType.StringType
+                    },
+                ),
+            ) {backStackEntry ->
+                val playListId = backStackEntry.arguments?.getLong("play_list_id")
+                    ?: throw IllegalAccessException()
+                val playListTitle = backStackEntry.arguments?.getString("play_list_title")
+                    ?: throw IllegalAccessException()
+
+                PlayListScreen(
+                    navigateUp =
+                        //navController.popBackStack()
+                        navController::navigateUp,
+                    playListId = playListId,
+                    playListTitle = playListTitle,
                 )
             }
         }
