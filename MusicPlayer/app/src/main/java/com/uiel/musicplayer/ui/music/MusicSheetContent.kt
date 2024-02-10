@@ -39,7 +39,7 @@ import com.uiel.musicplayer.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MusicSheetConetent(
+fun MusicSheetContent(
     onHideCurrentPlayingModal: () -> Unit,
 ) {
     Scaffold(
