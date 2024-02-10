@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Button
 import androidx.compose.material3.ElevatedCard
@@ -23,11 +25,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.uiel.musicplayer.R
+import com.uiel.musicplayer.data.playlist.PlayList
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
-    openPlayList: () -> Unit,
+    openPlayList: (
+         playListId: Long,
+         playListTitle: String,
+    ) -> Unit,
     onShowCurrentPlayingModal: () -> Unit,
 ) {
     Scaffold(
@@ -72,7 +78,7 @@ fun HomeScreen(
             }
         },
     ) { paddingValues ->
-        Column(
+        /*Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues),
@@ -86,9 +92,62 @@ fun HomeScreen(
             ) {
                 Text(text = "재생 목록으로 이동")
             }
+        }*/
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {// RecyclerView 와 유사
+            items(playListItems) {item ->
+                ElevatedCard(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 8.dp),
+                    onClick = {
+                        openPlayList(
+                            item.id,
+                            item.title,
+                        )
+                    },
+                ) {
+                    Text(
+                        modifier = Modifier.padding(all = 12.dp),
+                        text = item.title,
+                    )
+                }
+            }
         }
     }
 }
+
+val playListItems = listOf(
+    PlayList(
+        id = 1,
+        title = "좋아요 표시한 곡",
+        madeBy = "박의엘"
+    ),
+    PlayList(
+        id = 2,
+        title = "좋아요 표시한 곡",
+        madeBy = "박의엘"
+    ),
+    PlayList(
+        id = 3,
+        title = "좋아요 표시한 곡",
+        madeBy = "박의엘"
+    ),
+    PlayList(
+        id = 4,
+        title = "좋아요 표시한 곡",
+        madeBy = "박의엘"
+    ),
+    PlayList(
+        id = 5,
+        title = "좋아요 표시한 곡",
+        madeBy = "박의엘"
+    ),
+)
 
 @SuppressLint("PrivateResource")
 val homeBottomAppBarItems: List<BottomAppBarItem> = listOf(
