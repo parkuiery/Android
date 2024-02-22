@@ -21,8 +21,10 @@ import com.uiel.musicplayer.ui.home.HomeScreen
 import com.uiel.musicplayer.ui.music.MusicSheetContent
 import com.uiel.musicplayer.ui.playlist.PlayListScreen
 import com.uiel.musicplayer.ui.theme.MusicPlayerTheme
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +35,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MusicApp() {
@@ -64,7 +67,7 @@ fun MusicApp() {
         ) {
             composable("home") {
                 HomeScreen(
-                    openPlayList = { playListId, playListTitle ->  
+                    openPlayList = { playListId, playListTitle ->
                         navController.navigate("play_list/$playListId?title=$playListTitle")
                     },
                     onShowCurrentPlayingModal = {
@@ -84,7 +87,7 @@ fun MusicApp() {
                         type = NavType.StringType
                     },
                 ),
-            ) {backStackEntry ->
+            ) { backStackEntry ->
                 val playListId = backStackEntry.arguments?.getLong("play_list_id")
                     ?: throw IllegalAccessException()
                 val playListTitle = backStackEntry.arguments?.getString("play_list_title")
@@ -92,13 +95,12 @@ fun MusicApp() {
 
                 PlayListScreen(
                     navigateUp =
-                        //navController.popBackStack()
-                        navController::navigateUp,
+                    //navController.popBackStack()
+                    navController::navigateUp,
                     playListId = playListId,
                     playListTitle = playListTitle,
                 )
             }
         }
     }
-
 }
