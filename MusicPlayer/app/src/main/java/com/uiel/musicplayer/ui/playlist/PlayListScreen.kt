@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ArrowBack
-import androidx.compose.material.icons.outlined.KeyboardArrowDown
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -28,7 +27,7 @@ fun PlayListScreen(
         topBar = {
             TopAppBar(
                 navigationIcon = {
-                    IconButton(onClick =  navigateUp ) {
+                    IconButton(onClick = navigateUp) {
                         Icon(
                             //painter = painterResource(id = R.drawable.baseline_keyboard_arrow_down_24),
                             imageVector = Icons.Outlined.ArrowBack,
@@ -51,7 +50,6 @@ fun PlayListScreen(
             Text(text = "플레이리스트 플레이리시트")
             Text(text = "플레이리스트 플레이리시트")
             Text(text = "플레이리스트 플레이리시트")
-
         }
     }
 }
